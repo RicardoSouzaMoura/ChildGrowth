@@ -1,18 +1,39 @@
-<header>
-  <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">Child Growth</a>
-    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" [ngClass]="{'show': navBarOpen}" id="navbarCollapse">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Login <span class="sr-only">(current)</span></a>
+<nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="#">Child Growth</a>
+  <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse" data-target="#navbarCollapse"
+    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" [ngClass]="{'show': navBarOpen}" id="navbarCollapse">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" style="cursor: pointer;" routerLink="/child">Filhos</a>
+      </li>
+      <ng-template [ngIf]="authService.isAuthenticated()">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" (click)="toggleMenuGraficos()" style="cursor: pointer;">
+            Gráficos
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" [ngClass]="{'show': menuGraficosOpen}">
+            <a class="dropdown-item" routerLink="/bmiGraph">BMI X Idade</a>
+            <a class="dropdown-item" routerLink="/heightGraph">Altura X Idade</a>
+            <a class="dropdown-item" routerLink="/weightGraph">Peso X Idade</a>
+          </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Logout</a>
+          <a class="nav-link" style="cursor: pointer;" (click)="onLogout()">Logout</a>
         </li>
-      </ul>
-    </div>
-  </nav>
-</header>
+      </ng-template>
+      <ng-template [ngIf]="!authService.isAuthenticated()">
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLink="/signUp">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLink="/signIn">Login </a>
+        </li>
+      </ng-template>
+    </ul>
+  </div>
+</nav>
