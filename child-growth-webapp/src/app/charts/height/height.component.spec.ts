@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeightComponent } from './height.component';
+import { HeightForAgeComponent } from './height.component';
 
-describe('HeightComponent', () => {
-  let component: HeightComponent;
-  let fixture: ComponentFixture<HeightComponent>;
+describe('HeightForAgeComponent', () => {
+  let component: HeightForAgeComponent;
+  let fixture: ComponentFixture<HeightForAgeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeightComponent ]
+      declarations: [ HeightForAgeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeightComponent);
+    fixture = TestBed.createComponent(HeightForAgeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -5,10 +5,10 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Observable } from 'rxjs';
 
 @Component({
-    selector: 'graphic-weight',
+    selector: 'chart-weight',
     templateUrl: './weight.component.html'
 })
-export class WeightComponent {
+export class WeightForAgeComponent {
     
     itemsCollection: AngularFirestoreCollection<any>;
     items: Observable<any[]>;

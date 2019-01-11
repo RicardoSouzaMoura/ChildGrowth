@@ -12,9 +12,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WeightComponent } from './graphics/weight/weight.component';
-import { HeightComponent } from './graphics/height/height.component';
-import { BmiComponent } from './graphics/bmi/bmi.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { DropdownDirective } from './shared/dropdown.directive';
@@ -26,13 +23,16 @@ import { AuthService } from './auth/auth.service';
 import { ListChildComponent } from './child/list-child/list-child.component';
 import { AddChildComponent } from './child/add-child/add-child.component';
 import { DataStorageService } from './shared/data-storage.service';
+import { WeightForAgeComponent } from './charts/weight/weight.component';
+import { HeightForAgeComponent } from './charts/height/height.component';
+import { BmiForAgeComponent } from './charts/bmi/bmi.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WeightComponent,
-    HeightComponent,
-    BmiComponent,
+    WeightForAgeComponent,
+    HeightForAgeComponent,
+    BmiForAgeComponent,
     HomeComponent,
     HeaderComponent,
     DropdownDirective,

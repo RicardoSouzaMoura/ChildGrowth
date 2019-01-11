@@ -12,6 +12,7 @@ export class AuthService {
 
   constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
     afAuth.auth.onAuthStateChanged(function (pUser) {
+      console.log("[AuthService].construtor onAuthStateChanged...user: "+pUser);
       if (pUser) {
         // User is signed in.
         this.user = pUser;
@@ -65,6 +66,7 @@ export class AuthService {
               email: email
               //some more user data
             });
+            this.user = this.afAuth.auth.currentUser;
             this.afAuth.auth.currentUser.getIdToken()
               .then(token => {
                 this.token = token;
@@ -82,6 +84,7 @@ export class AuthService {
     return new Promise<any>((resolve, reject) => {
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
         .then(res => {
+          this.user = this.afAuth.auth.currentUser;
           this.afAuth.auth.currentUser.getIdToken()
             .then(token => {
               this.token = token;

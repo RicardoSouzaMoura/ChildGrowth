@@ -11,6 +11,7 @@ import { DataStorageService } from 'src/app/shared/data-storage.service';
 export class AddChildComponent implements OnInit {
 
   errorMessage: string;
+  successMessage: string;
 
   constructor(private dataStorageService: DataStorageService) { }
 
@@ -19,16 +20,17 @@ export class AddChildComponent implements OnInit {
 
   createChild(form: NgForm) {
     const name = form.value.name;
-    const dtNascimento = form.value.dtNascimento;
+    const birthDate = form.value.birthDate;
     const gender = form.value.gender;
 
-    this.dataStorageService.createChild(name, dtNascimento, gender)
+    this.dataStorageService.createChild(name, birthDate, gender)
       .then((res) => {
-        console.log("res: " + res);
+        this.errorMessage = null;
+        this.successMessage = res;
       })
       .catch((error) => {
         this.errorMessage = error;
-        console.log("error: " + error);
+        this.successMessage = null;
       });
   }
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -11,7 +13,7 @@ export class HeaderComponent implements OnInit {
   navBarOpen = false;
   menuGraficosOpen = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -20,12 +22,24 @@ export class HeaderComponent implements OnInit {
     this.navBarOpen = !this.navBarOpen;
   }
 
+  toggleLink(route:string){
+    if (this.navBarOpen){
+      this.navBarOpen = false;
+    }
+    console.log("rota: "+route);
+    this.router.navigate([route]);
+  }
+
   toggleMenuGraficos(){
     this.menuGraficosOpen = !this.menuGraficosOpen;
   }
 
   onLogout(){
+    if (this.navBarOpen){
+      this.navBarOpen = false;
+    }
     this.authService.logout();
+    this.router.navigate(["/"]);
   }
 
 

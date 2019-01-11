@@ -5,12 +5,13 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'graphic-height',
-  templateUrl: './height.component.html',
-  styleUrls: ['./height.component.scss']
+  selector: 'chart-bmi',
+  templateUrl: './bmi.component.html',
+  styleUrls: ['./bmi.component.scss']
 })
-export class HeightComponent implements OnInit {
+export class BmiForAgeComponent implements OnInit {
 
+  afs: AngularFirestore;
   itemsCollection: AngularFirestoreCollection<any>;
   items: Observable<any[]>;
   @ViewChild(ChartComponent) chart: ChartComponent;
@@ -21,7 +22,7 @@ export class HeightComponent implements OnInit {
     datasets: []
   };
   options = {
-    title: { text: "Altura X Idade", display: true },
+    title: { text: "Indice de Massa Corporal (BMI) X Idade", display: true },
     responsive: true,
     maintainAspectRatio: false,
     legend: {
@@ -31,7 +32,7 @@ export class HeightComponent implements OnInit {
       yAxes: [{
         scaleLabel: {
           display: true,
-          labelString: 'Altura (cm)'
+          labelString: 'BMI (Kg/m2)'
         }
       }],
       xAxes: [{
@@ -43,8 +44,12 @@ export class HeightComponent implements OnInit {
     }
   };
 
-    constructor(afs: AngularFirestore) {
-    this.itemsCollection = afs.collection<any>('heightForAge',
+  constructor(afs: AngularFirestore) {
+    this.afs = afs;
+  };
+
+  ngOnInit() {
+    this.itemsCollection = this.afs.collection<any>('bmiForAge',
       ref => ref.where('gender', '==', 'b')
         .where('month', '<=', 24)
         .orderBy('month')
@@ -78,9 +83,6 @@ export class HeightComponent implements OnInit {
       this.chart.chart.update();
 
     })
-  };
-
-  ngOnInit() {
   }
 
 }

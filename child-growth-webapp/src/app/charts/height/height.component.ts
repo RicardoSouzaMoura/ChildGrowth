@@ -5,11 +5,11 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'graphic-bmi',
-  templateUrl: './bmi.component.html',
-  styleUrls: ['./bmi.component.scss']
+  selector: 'chart-height',
+  templateUrl: './height.component.html',
+  styleUrls: ['./height.component.scss']
 })
-export class BmiComponent implements OnInit {
+export class HeightForAgeComponent implements OnInit {
 
   itemsCollection: AngularFirestoreCollection<any>;
   items: Observable<any[]>;
@@ -21,7 +21,7 @@ export class BmiComponent implements OnInit {
     datasets: []
   };
   options = {
-    title: { text: "Indice de Massa Corporal (BMI) X Idade", display: true },
+    title: { text: "Altura X Idade", display: true },
     responsive: true,
     maintainAspectRatio: false,
     legend: {
@@ -31,7 +31,7 @@ export class BmiComponent implements OnInit {
       yAxes: [{
         scaleLabel: {
           display: true,
-          labelString: 'BMI (Kg/m2)'
+          labelString: 'Altura (cm)'
         }
       }],
       xAxes: [{
@@ -43,8 +43,8 @@ export class BmiComponent implements OnInit {
     }
   };
 
-  constructor(afs: AngularFirestore) {
-    this.itemsCollection = afs.collection<any>('bmiForAge',
+    constructor(afs: AngularFirestore) {
+    this.itemsCollection = afs.collection<any>('heightForAge',
       ref => ref.where('gender', '==', 'b')
         .where('month', '<=', 24)
         .orderBy('month')
