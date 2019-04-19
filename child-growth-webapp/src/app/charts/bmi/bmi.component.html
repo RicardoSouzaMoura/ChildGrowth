@@ -1,7 +1,48 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12" >
-      <chart [type]="type" [data]="data" [options]="options" style="position: relative; height:80vh"></chart>
+    <div class="col-md-12">
+      <h1>{{child.name}} ({{child.birthDate.toDate() | date:'dd/MM/yyyy'}})</h1>
+    </div>
+  </div>
+  <!--div class="row">
+    <div class="col-md-12">
+      <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+        <ngb-panel title="Medidas">
+          <ng-template ngbPanelContent>
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
+            officia
+            aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+            tempor,
+            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+            helvetica,
+            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+            Leggings
+            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
+            accusamus
+            labore sustainable VHS.
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </div>
+  </div-->
+  <div class="row">
+    <div class="col-md-12">
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <chart #bmiChart [type]="type" [data]="bmiData" [options]="bmiOptions" style="position: relative; height:80vh"></chart>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <chart #heightChart [type]="type" [data]="heightData" [options]="heightOptions" style="position: relative; height:80vh"></chart>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <chart #weightChart [type]="type" [data]="weightData" [options]="weightOptions" style="position: relative; height:80vh"></chart>
     </div>
   </div>
 </div>

@@ -1,15 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { environment } from '../environments/environment';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { ChartModule } from 'angular2-chartjs';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -21,11 +21,14 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { AuthService } from './auth/auth.service';
 import { ListChildComponent } from './child/list-child/list-child.component';
-import { AddChildComponent } from './child/add-child/add-child.component';
 import { DataStorageService } from './shared/data-storage.service';
 import { WeightForAgeComponent } from './charts/weight/weight.component';
 import { HeightForAgeComponent } from './charts/height/height.component';
 import { BmiForAgeComponent } from './charts/bmi/bmi.component';
+import { UtilService } from './shared/util.service';
+import { NgbDateFirestoreAdapter } from './shared/ngb-date-firestore-adapter.service';
+import { ManageChildComponent } from './child/manage-child/manage-child.component';
+import { EditChildComponent } from './child/edit-child/edit-child.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,8 @@ import { BmiForAgeComponent } from './charts/bmi/bmi.component';
     SignupComponent,
     SigninComponent,
     ListChildComponent,
-    AddChildComponent
+    ManageChildComponent,
+    EditChildComponent
   ],
   imports: [
     BrowserModule,
@@ -50,9 +54,11 @@ import { BmiForAgeComponent } from './charts/bmi/bmi.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [AuthGuard, AuthService, DataStorageService],
+  providers: [AuthGuard, AuthService, DataStorageService, UtilService, 
+    { provide: NgbDateAdapter, useClass: NgbDateFirestoreAdapter }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
